@@ -922,7 +922,7 @@
     <p>For a long time consumer PSUs delivered 12 V on three or more separate 8-pin EPS/PCIe connectors. Each 8-pin is rated at 150 W &mdash; so a 450 W card needed three of them, plus an adapter. The <strong>12V-2x6</strong> connector (a quiet revision of the original 12VHPWR shipped with the RTX 4090) consolidates that into a single 16-pin header rated for <strong>600 W on one cable</strong>, with four sense pins that let the card negotiate its allowance with the PSU.</p>
 
     <h3>Inside the on-card VRM</h3>
-    <p>A single 12&nbsp;V&nbsp;&rarr;&nbsp;1&nbsp;V buck converter at 700&nbsp;A is impossible &mdash; the inductor would saturate, the MOSFETs would melt, and the ripple would be unusable. So the design splits the conversion across <strong>multiple parallel phases</strong>, each handling roughly 25&ndash;40 A. A B200 board carries on the order of <strong>30 phases</strong> for the GPU core alone.</p>
+    <p>A single 12&nbsp;V&nbsp;&rarr;&nbsp;1&nbsp;V buck converter at 700&nbsp;A is impossible &mdash; the inductor would saturate, the MOSFETs would melt, and the ripple would be unusable. So the design splits the conversion across <strong>multiple parallel phases</strong>, each handling roughly 50&ndash;80 A. A B200 board carries on the order of <strong>20 phases</strong> for the GPU core alone.</p>
     <ul>
         <li>Each <strong>phase</strong> consists of a high-side MOSFET, a low-side MOSFET, an inductor (~150 nH), a driver IC, and the local sense network. Many designs now use <strong>DrMOS</strong> integrated power stages to combine all of this into one package.</li>
         <li>Phases are <strong>interleaved</strong>: their switching cycles are evenly spaced in time, so that ripple currents partially cancel at the output and the bulk capacitor sees only a small fraction of the per-phase ripple. This is the same trick a polyphase rectifier uses on the AC side.</li>
@@ -931,7 +931,7 @@
 
     <div class="callout">
         <div class="callout-label">Numbers worth remembering</div>
-        <p>A B200 at 1000 W on a 0.85 V core rail draws roughly <strong>1180 A</strong>. Spread across 30 VRM phases that is ~40 A per phase &mdash; well within modern DrMOS ratings. Running the same card at 12 V directly would require a fraction of that current but no transistor in 2026 can switch from 0&ndash;1 in a fast enough window to drive a digital logic gate; the buck conversion is mandatory.</p>
+        <p>A B200 at 1000 W on a 0.85 V core rail draws roughly <strong>1180 A</strong>. Spread across 20 VRM phases that is ~60 A per phase &mdash; well within modern DrMOS ratings. Running the same card at 12 V directly would require a fraction of that current but no transistor in 2026 can switch from 0&ndash;1 in a fast enough window to drive a digital logic gate; the buck conversion is mandatory.</p>
     </div>
 </section>
 
