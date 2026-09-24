@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-card: #0d1117;
-            --bg-code: #161b22;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --accent: #76B900;
-            --accent-dim: #76B90044;
-            --accent-glow: #76B90033;
-            --border: #21262d;
+            --bg-primary: #1b1b1a;
+            --bg-card: #212120;
+            --bg-code: #292928;
+            --text-primary: #edede7;
+            --text-secondary: #9b9b95;
+            --accent: #b8b315;
+            --accent-dim: #b8b31544;
+            --accent-glow: #b8b31533;
+            --border: #363633;
             --font-display: 'Space Grotesk', sans-serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
             --font-body: 'Inter', sans-serif;
@@ -228,7 +228,7 @@
             font-family: var(--font-mono);
             font-size: 0.75rem;
             color: var(--accent);
-            background: rgba(118, 185, 0, 0.08);
+            background: rgba(184,179,21,0.08);
             padding: 0.4rem 1rem;
             border-bottom: 1px solid var(--border);
         }
@@ -243,18 +243,18 @@
             font-family: var(--font-mono);
             font-size: 0.85rem;
             line-height: 1.6;
-            color: #c9d1d9;
+            color: #d5d5cf;
         }
 
         /* Syntax highlighting (manual) */
-        .kw { color: #ff7b72; }
-        .fn { color: #d2a8ff; }
-        .str { color: #a5d6ff; }
-        .cm { color: #8b949e; font-style: italic; }
-        .num { color: #79c0ff; }
-        .type { color: #ffa657; }
-        .dir { color: #ff7b72; }
-        .mac { color: #ffa657; }
+        .kw { color: #e57d63; }
+        .fn { color: #d1c2e1; }
+        .str { color: #c9dbe2; }
+        .cm { color: #9b9b95; font-style: italic; }
+        .num { color: #afcbd8; }
+        .type { color: #e0b172; }
+        .dir { color: #e57d63; }
+        .mac { color: #e0b172; }
 
         /* ── Tables ── */
         .table-wrap {
@@ -292,7 +292,7 @@
         }
 
         tr:nth-child(even) td {
-            background: rgba(13, 17, 23, 0.5);
+            background: rgba(33,33,32,0.5);
         }
 
         /* ── Diagrams ── */
@@ -324,7 +324,7 @@
         .diagram-box.accent {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(118, 185, 0, 0.08);
+            background: rgba(184,179,21,0.08);
         }
 
         .diagram-box.dim {
@@ -400,7 +400,7 @@
         .hierarchy-item.accent {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(118, 185, 0, 0.08);
+            background: rgba(184,179,21,0.08);
         }
 
         /* Grid diagram */
@@ -673,7 +673,7 @@
             cursor: pointer;
             transition: background 0.15s ease;
         }
-        .btn:hover { background: rgba(118, 185, 0, 0.2); }
+        .btn:hover { background: rgba(184,179,21,0.2); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .btn.secondary {
             background: var(--bg-code);
@@ -750,8 +750,8 @@
             margin-left: 0.3rem;
         }
         .badge.ok    { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-        .badge.warn  { border-color: #ffa657; color: #ffa657; background: rgba(255,166,87,0.08); }
-        .badge.bad   { border-color: #ff7b72; color: #ff7b72; background: rgba(255,123,114,0.08); }
+        .badge.warn  { border-color: #e0b172; color: #e0b172; background: rgba(224,177,114,0.08); }
+        .badge.bad   { border-color: #e57d63; color: #e57d63; background: rgba(229,125,99,0.08); }
 
     </style>
 </head>
@@ -817,27 +817,27 @@
     <div class="tier-visual">
         <div class="tier-bar">
             <div class="tier-label">RTX 4090</div>
-            <div class="tier-fill" style="width: 16%; background: rgba(118, 185, 0, 0.25); color: var(--text-primary);">450 W</div>
+            <div class="tier-fill" style="width: 16%; background: rgba(184,179,21,0.25); color: var(--text-primary);">450 W</div>
             <div class="tier-cost">consumer</div>
         </div>
         <div class="tier-bar">
             <div class="tier-label">RTX 5090</div>
-            <div class="tier-fill" style="width: 21%; background: rgba(118, 185, 0, 0.35); color: var(--text-primary);">575 W</div>
+            <div class="tier-fill" style="width: 21%; background: rgba(184,179,21,0.35); color: var(--text-primary);">575 W</div>
             <div class="tier-cost">consumer</div>
         </div>
         <div class="tier-bar">
             <div class="tier-label">H100 SXM5</div>
-            <div class="tier-fill" style="width: 26%; background: rgba(118, 185, 0, 0.45); color: var(--text-primary);">700 W</div>
+            <div class="tier-fill" style="width: 26%; background: rgba(184,179,21,0.45); color: var(--text-primary);">700 W</div>
             <div class="tier-cost">datacenter</div>
         </div>
         <div class="tier-bar">
             <div class="tier-label">B200</div>
-            <div class="tier-fill" style="width: 37%; background: rgba(118, 185, 0, 0.6); color: var(--text-primary);">1000 W</div>
+            <div class="tier-fill" style="width: 37%; background: rgba(184,179,21,0.6); color: var(--text-primary);">1000 W</div>
             <div class="tier-cost">datacenter</div>
         </div>
         <div class="tier-bar">
             <div class="tier-label">GB200 superchip</div>
-            <div class="tier-fill" style="width: 100%; background: rgba(118, 185, 0, 0.85); color: #0a0a0a;">2700 W (2&times;B200 + Grace)</div>
+            <div class="tier-fill" style="width: 100%; background: rgba(184,179,21,0.85); color: #1b1b1a;">2700 W (2&times;B200 + Grace)</div>
             <div class="tier-cost">superchip</div>
         </div>
     </div>
@@ -867,54 +867,54 @@
         <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
             <defs>
                 <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                    <path d="M0,0 L9,3 L0,6 z" fill="#76B900"/>
+                    <path d="M0,0 L9,3 L0,6 z" fill="#b8b315"/>
                 </marker>
             </defs>
             <!-- Wall -->
-            <rect x="10" y="120" width="90" height="40" rx="4" fill="#161b22" stroke="#21262d"/>
-            <text x="55" y="145" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#e6edf3">230 V AC</text>
-            <text x="55" y="170" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">wall</text>
+            <rect x="10" y="120" width="90" height="40" rx="4" fill="#292928" stroke="#363633"/>
+            <text x="55" y="145" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#edede7">230 V AC</text>
+            <text x="55" y="170" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">wall</text>
 
             <!-- PSU -->
-            <rect x="120" y="100" width="110" height="80" rx="4" fill="#161b22" stroke="#76B900"/>
-            <text x="175" y="125" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#76B900" font-weight="600">PSU</text>
-            <text x="175" y="145" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#e6edf3">12 V rail</text>
-            <text x="175" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">~94% eff</text>
+            <rect x="120" y="100" width="110" height="80" rx="4" fill="#292928" stroke="#b8b315"/>
+            <text x="175" y="125" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#b8b315" font-weight="600">PSU</text>
+            <text x="175" y="145" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#edede7">12 V rail</text>
+            <text x="175" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">~94% eff</text>
 
             <!-- Cable -->
-            <rect x="250" y="120" width="100" height="40" rx="4" fill="#161b22" stroke="#21262d"/>
-            <text x="300" y="142" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#e6edf3">12V-2x6</text>
-            <text x="300" y="156" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">600 W max</text>
+            <rect x="250" y="120" width="100" height="40" rx="4" fill="#292928" stroke="#363633"/>
+            <text x="300" y="142" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#edede7">12V-2x6</text>
+            <text x="300" y="156" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">600 W max</text>
 
             <!-- VRM stage -->
-            <rect x="370" y="60" width="180" height="160" rx="4" fill="#161b22" stroke="#76B900"/>
-            <text x="460" y="85" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#76B900" font-weight="600">On-card VRM</text>
-            <text x="460" y="105" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#e6edf3">8&ndash;30 phases</text>
-            <text x="460" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">~500 kHz switching</text>
-            <line x1="385" y1="135" x2="535" y2="135" stroke="#21262d"/>
-            <text x="460" y="155" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">MOSFET pair</text>
-            <text x="460" y="170" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">+ inductor</text>
-            <text x="460" y="185" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">+ driver IC</text>
-            <text x="460" y="205" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">interleaved phases</text>
+            <rect x="370" y="60" width="180" height="160" rx="4" fill="#292928" stroke="#b8b315"/>
+            <text x="460" y="85" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#b8b315" font-weight="600">On-card VRM</text>
+            <text x="460" y="105" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#edede7">8&ndash;30 phases</text>
+            <text x="460" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">~500 kHz switching</text>
+            <line x1="385" y1="135" x2="535" y2="135" stroke="#363633"/>
+            <text x="460" y="155" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">MOSFET pair</text>
+            <text x="460" y="170" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">+ inductor</text>
+            <text x="460" y="185" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">+ driver IC</text>
+            <text x="460" y="205" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">interleaved phases</text>
 
             <!-- Decoupling -->
-            <rect x="570" y="100" width="110" height="80" rx="4" fill="#161b22" stroke="#21262d"/>
-            <text x="625" y="125" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#76B900" font-weight="600">Decoupling</text>
-            <text x="625" y="145" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#e6edf3">MLCC + POSCAP</text>
-            <text x="625" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">tantalum bulk</text>
+            <rect x="570" y="100" width="110" height="80" rx="4" fill="#292928" stroke="#363633"/>
+            <text x="625" y="125" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#b8b315" font-weight="600">Decoupling</text>
+            <text x="625" y="145" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#edede7">MLCC + POSCAP</text>
+            <text x="625" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">tantalum bulk</text>
 
             <!-- Die -->
-            <rect x="700" y="100" width="150" height="80" rx="4" fill="#161b22" stroke="#76B900"/>
-            <text x="775" y="125" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#76B900" font-weight="600">Die</text>
-            <text x="775" y="145" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#e6edf3">0.7&ndash;1.1 V</text>
-            <text x="775" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8b949e">hundreds of A</text>
+            <rect x="700" y="100" width="150" height="80" rx="4" fill="#292928" stroke="#b8b315"/>
+            <text x="775" y="125" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#b8b315" font-weight="600">Die</text>
+            <text x="775" y="145" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#edede7">0.7&ndash;1.1 V</text>
+            <text x="775" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9b9b95">hundreds of A</text>
 
             <!-- Arrows -->
-            <line x1="100" y1="140" x2="118" y2="140" stroke="#76B900" stroke-width="1.5" marker-end="url(#arrow1)"/>
-            <line x1="230" y1="140" x2="248" y2="140" stroke="#76B900" stroke-width="1.5" marker-end="url(#arrow1)"/>
-            <line x1="350" y1="140" x2="368" y2="140" stroke="#76B900" stroke-width="1.5" marker-end="url(#arrow1)"/>
-            <line x1="550" y1="140" x2="568" y2="140" stroke="#76B900" stroke-width="1.5" marker-end="url(#arrow1)"/>
-            <line x1="680" y1="140" x2="698" y2="140" stroke="#76B900" stroke-width="1.5" marker-end="url(#arrow1)"/>
+            <line x1="100" y1="140" x2="118" y2="140" stroke="#b8b315" stroke-width="1.5" marker-end="url(#arrow1)"/>
+            <line x1="230" y1="140" x2="248" y2="140" stroke="#b8b315" stroke-width="1.5" marker-end="url(#arrow1)"/>
+            <line x1="350" y1="140" x2="368" y2="140" stroke="#b8b315" stroke-width="1.5" marker-end="url(#arrow1)"/>
+            <line x1="550" y1="140" x2="568" y2="140" stroke="#b8b315" stroke-width="1.5" marker-end="url(#arrow1)"/>
+            <line x1="680" y1="140" x2="698" y2="140" stroke="#b8b315" stroke-width="1.5" marker-end="url(#arrow1)"/>
         </svg>
     </div>
 
@@ -1240,27 +1240,27 @@ $ sudo nvidia-smi --power-limit-min=<span class="num">200</span> --power-limit=<
     <div class="tier-visual">
         <div class="tier-bar">
             <div class="tier-label">Axial fan</div>
-            <div class="tier-fill" style="width: 18%; background: rgba(118, 185, 0, 0.25); color: var(--text-primary);">&le; 450 W</div>
+            <div class="tier-fill" style="width: 18%; background: rgba(184,179,21,0.25); color: var(--text-primary);">&le; 450 W</div>
             <div class="tier-cost">consumer</div>
         </div>
         <div class="tier-bar">
             <div class="tier-label">Blower</div>
-            <div class="tier-fill" style="width: 16%; background: rgba(118, 185, 0, 0.30); color: var(--text-primary);">&le; 400 W</div>
+            <div class="tier-fill" style="width: 16%; background: rgba(184,179,21,0.30); color: var(--text-primary);">&le; 400 W</div>
             <div class="tier-cost">workstation</div>
         </div>
         <div class="tier-bar">
             <div class="tier-label">Passive HGX</div>
-            <div class="tier-fill" style="width: 28%; background: rgba(118, 185, 0, 0.45); color: var(--text-primary);">&le; 700 W</div>
+            <div class="tier-fill" style="width: 28%; background: rgba(184,179,21,0.45); color: var(--text-primary);">&le; 700 W</div>
             <div class="tier-cost">SXM5</div>
         </div>
         <div class="tier-bar">
             <div class="tier-label">D2C liquid</div>
-            <div class="tier-fill" style="width: 60%; background: rgba(118, 185, 0, 0.65); color: #0a0a0a;">&le; 1500 W</div>
+            <div class="tier-fill" style="width: 60%; background: rgba(184,179,21,0.65); color: #1b1b1a;">&le; 1500 W</div>
             <div class="tier-cost">B200/GB200</div>
         </div>
         <div class="tier-bar">
             <div class="tier-label">Immersion</div>
-            <div class="tier-fill" style="width: 100%; background: rgba(118, 185, 0, 0.85); color: #0a0a0a;">&le; 3000 W+</div>
+            <div class="tier-fill" style="width: 100%; background: rgba(184,179,21,0.85); color: #1b1b1a;">&le; 3000 W+</div>
             <div class="tier-cost">hyperscale</div>
         </div>
     </div>
