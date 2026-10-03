@@ -760,7 +760,7 @@
 <header class="hero">
     <div class="series-label">NVIDIA GPU Architectures Series — Presentation 24</div>
     <h1><span class="accent">Power &amp; Thermal</span> &mdash; Delivering 1000 W to a Card and Removing It Again</h1>
-    <p class="subtitle">A B200 dissipates 1000 watts in roughly 800 mm&sup2; of silicon. Walk through how NVIDIA gets that power into the package &mdash; VRMs, multi-rail design, decoupling, transient response &mdash; and how the heat gets out &mdash; vapour chambers, direct-to-chip liquid cooling, immersion. Plus GPU Boost, thermal throttling, power capping and TGP.</p>
+    <p class="subtitle">A B200 dissipates 1000 watts in roughly 1,600 mm&sup2; of silicon (two ~800 mm&sup2; dies). Walk through how NVIDIA gets that power into the package &mdash; VRMs, multi-rail design, decoupling, transient response &mdash; and how the heat gets out &mdash; vapour chambers, direct-to-chip liquid cooling, immersion. Plus GPU Boost, thermal throttling, power capping and TGP.</p>
 
     <div class="tags">
         <span class="tag">VRM</span><span class="tag">TGP</span><span class="tag">GPU Boost</span>
@@ -843,7 +843,7 @@
     </div>
 
     <h3>Scaling out to a rack</h3>
-    <p>An <strong>NVL72</strong> rack is 36 GB200 superchips packaged with NVLink switches, PSUs, and a closed water loop in a single 19-inch frame. It draws roughly <strong>120 kW</strong>. A datacenter row of eight NVL72 racks draws nearly <strong>1 MW just for the GPUs</strong> &mdash; before networking switches, storage, CPU control planes, or the cooling and power-conversion overhead.</p>
+    <p>An <strong>NVL72</strong> rack is 36 GB200 superchips packaged with NVLink switches, PSUs, and a closed water loop in a single 19-inch frame. It draws roughly <strong>120 kW</strong>. A datacenter row of eight NVL72 racks draws nearly <strong>1 MW</strong> (about 580 kW of it the 576 GPUs themselves) &mdash; before networking outside the racks, storage, or the cooling and power-conversion overhead.</p>
 
     <div class="callout">
         <div class="callout-label">The constraint has shifted</div>
@@ -852,7 +852,7 @@
 
     <h3>What that means for the engineering</h3>
     <ul>
-        <li><strong>Per-die heat flux</strong> is around 1.2 W/mm&sup2; on a B200 die &mdash; comparable to a small soldering iron tip, applied uniformly across the package.</li>
+        <li><strong>Per-die heat flux</strong> is around 0.6 W/mm&sup2; on a B200 die (1000 W over ~1,600 mm&sup2;) &mdash; comparable to a small soldering iron tip, applied uniformly across the package.</li>
         <li><strong>Per-rack heat flux</strong> at 120 kW in 0.5 m&sup2; of frontal area is about 240 kW/m&sup2; &mdash; roughly the heat flux of a domestic gas hob held continuously against a wall of equipment.</li>
         <li><strong>Air-cooling has run out</strong> at this scale. Liquid is no longer optional for top-tier accelerators.</li>
     </ul>
@@ -1567,7 +1567,7 @@ const pue = {
 
     <div class="callout">
         <div class="callout-label">The headline</div>
-        <p>Try <strong>8&times; B200 in a passive HGX chassis at 35 &deg;C</strong>. Per-card TGP is 1000 W, effective passive capability at 35 &deg;C inlet is roughly 546 W &mdash; the configuration is <em>thermally infeasible</em> on air, full stop. That is why GB200 NVL72 ships with mandatory D2C liquid: the engineering envelope at 1000 W per card has run off the end of what air can do, regardless of how hard you spin the fans.</p>
+        <p>Try <strong>8&times; B200 in a passive HGX chassis at 35 &deg;C</strong>. Per-card TGP is 1000 W, effective passive capability at 35 &deg;C inlet is roughly 546 W in this model &mdash; which is why air-cooled DGX B200 needs a 10U chassis moving ~1,550 CFM, and why GB200 NVL72 ships with mandatory D2C liquid: the engineering envelope at 1000 W per card has run off the end of what air can do, regardless of how hard you spin the fans.</p>
     </div>
 </section>
 
