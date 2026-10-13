@@ -935,6 +935,11 @@
         <div class="callout-label">Numbers worth remembering</div>
         <p>A B200 at 1000 W on a 0.85 V core rail draws roughly <strong>1180 A</strong>. Spread across 20 VRM phases that is ~60 A per phase &mdash; well within modern DrMOS ratings. Running the same card at 12 V directly would require a fraction of that current but no transistor in 2026 can switch from 0&ndash;1 in a fast enough window to drive a digital logic gate; the buck conversion is mandatory.</p>
     </div>
+
+    <div class="callout">
+        <div class="callout-label">Animated companion</div>
+        <p>The rack-level end of this chain (power shelves, N+N supplies and the busbar current at 50, 54 and 800 V): AI Racks Explained, <a href="https://ai-racks-explained.vercel.app/learn/06-power" style="color: var(--accent);">chapter 6, power</a>.</p>
+    </div>
 </section>
 
 <section class="slide" id="slide-03">
@@ -1033,6 +1038,11 @@
     <div class="callout">
         <div class="callout-label">Reference vs OEM</div>
         <p>NVIDIA&apos;s reference designs are aggressive on decoupling. They specify a particular MLCC count, a particular POSCAP family, a particular package-level placement, and validate against a worst-case di/dt step. <strong>OEM partner cards</strong> sometimes cut corners on capacitor count to reduce BOM cost &mdash; the 2020 RTX 3080 launch was a public case study, where some partner boards crashed under FurMark transients while NVIDIA&apos;s Founders Edition did not. The fix was always more POSCAPs near the package.</p>
+    </div>
+
+    <div class="callout">
+        <div class="callout-label">Animated companion</div>
+        <p>Synchronised training load swinging a whole rack's power, and how much the power shelves' stored energy smooths it: AI Racks Explained, <a href="https://ai-racks-explained.vercel.app/learn/06-power" style="color: var(--accent);">chapter 6, power</a>.</p>
     </div>
 </section>
 
@@ -1266,6 +1276,11 @@ $ sudo nvidia-smi --power-limit-min=<span class="num">200</span> --power-limit=<
             <div class="tier-cost">hyperscale</div>
         </div>
     </div>
+
+    <div class="callout">
+        <div class="callout-label">Animated companion</div>
+        <p>A rack's coolant loop (CDU, manifolds, cold plates) with temperatures and flow from Q = m&#775;c<sub>p</sub>&Delta;T, against the air that would carry the same heat: AI Racks Explained, <a href="https://ai-racks-explained.vercel.app/learn/07-cooling" style="color: var(--accent);">chapter 7, cooling</a>.</p>
+    </div>
 </section>
 
 <section class="slide" id="slide-09">
@@ -1338,25 +1353,25 @@ clocks.current.graphics [MHz], temperature.gpu [C], clocks_throttle_reasons.acti
     <h3>From card heat to chassis heat</h3>
     <p>A 700&nbsp;W card removes <strong>~2390 BTU/hr</strong>. (One watt is 3.412 BTU/hr; the conversion is mechanical.) A 4U HGX chassis with eight H100s at 700 W each is <strong>5.6 kW</strong> of heat &mdash; ~19,100 BTU/hr &mdash; that has to leave the rack into the hot aisle.</p>
 
-    <p>For air-cooled removal at a typical 15&nbsp;&deg;C aisle delta-T, the rule of thumb is roughly <strong>0.026 CFM per watt</strong>:</p>
+    <p>For air-cooled removal at a typical 15&nbsp;&deg;C aisle delta-T, the rule of thumb is roughly <strong>0.115 CFM per watt</strong> (from Q = &rho;c<sub>p</sub>V&#775;&Delta;T with standard-day air):</p>
     <ul>
-        <li>Single 700 W card: ~18 CFM front-to-back.</li>
-        <li>Eight-card HGX chassis at 5.6 kW: ~150 CFM, sustained.</li>
-        <li>Whole rack at 30 kW (legacy air-cooled limit): ~780 CFM &mdash; near the practical limit of perforated-tile delivery.</li>
+        <li>Single 700 W card: ~80 CFM front-to-back.</li>
+        <li>Eight-card HGX chassis at 5.6 kW: ~640 CFM, sustained.</li>
+        <li>Whole rack at 30 kW: ~3,450 CFM &mdash; and NVIDIA notes air-cooled data centres were built for around 20 kW a rack.</li>
     </ul>
 
-    <p>For closed-loop water at 25 &deg;C inlet and 35 &deg;C return, a similar rule of thumb is <strong>~0.85 GPM per kW</strong> (using water&apos;s specific heat). So:</p>
+    <p>For closed-loop water at 25 &deg;C inlet and 35 &deg;C return, a similar rule of thumb is <strong>~0.38 US GPM per kW</strong> (Q = m&#775;c<sub>p</sub>&Delta;T with water&apos;s specific heat and a 10 K rise). So:</p>
     <ul>
-        <li>Eight-card HGX at 5.6 kW: ~5 GPM, with ~2 m of head loss across the cold plates.</li>
-        <li>NVL72 at 120 kW: ~100 GPM, supplied by a row-level CDU off the facility chilled-water main.</li>
+        <li>Eight-card HGX at 5.6 kW: ~2.1 GPM, with ~2 m of head loss across the cold plates.</li>
+        <li>NVL72 at 120 kW: ~45 GPM (~170 L/min), supplied by a row-level CDU off the facility chilled-water main.</li>
     </ul>
 
     <h3>Power distribution at rack scale</h3>
     <p>A 30&ndash;120 kW rack does not run on a household plug.</p>
     <ul>
         <li>The facility delivers <strong>three-phase 380&nbsp;V or 415&nbsp;V AC</strong> to the rack <strong>PDU (Power Distribution Unit)</strong>. Single-phase 230 V can&apos;t physically carry the current at this load.</li>
-        <li>For dense modern racks (NVL72 and beyond), NVIDIA pushes a <strong>48 V DC rack-internal bus</strong>: each compute tray pulls 48 V instead of 12 V, then steps it down on-tray. <strong>Why:</strong> at 120 kW, 48 V means 2500 A on the rack busbar; 12 V would mean 10000 A. The I&sup2;R losses scale as current squared, so the 48 V architecture cuts busbar copper losses by 16&times;.</li>
-        <li>Each compute tray then runs an on-tray 48 V &rarr; 12 V intermediate bus converter feeding the GPU board&apos;s VRM stage from slide 02.</li>
+        <li>For dense modern racks (NVL72 and beyond), NVIDIA uses a <strong>~50 V DC rack-internal bus</strong> (its DGX GB200 guide: power shelves output a nominal 50&ndash;51 V DC to the bus bar; its 800 VDC blog calls it 54 V): each compute tray pulls ~50 V instead of 12 V, then steps it down on-tray. <strong>Why:</strong> at 120 kW, 50 V means 2,400 A on the rack busbar; 12 V would mean 10,000 A. The I&sup2;R losses scale as current squared, so the ~50 V bus cuts busbar copper losses about 17&times;. For 1 MW racks NVIDIA plans 800 V DC to the rack from 2027.</li>
+        <li>Each compute tray then runs an on-tray ~50 V &rarr; 12 V intermediate bus converter feeding the GPU board&apos;s VRM stage from slide 02.</li>
     </ul>
 
     <h3>PUE &mdash; Power Usage Effectiveness</h3>
@@ -1374,6 +1389,11 @@ clocks.current.graphics [MHz], temperature.gpu [C], clocks_throttle_reasons.acti
     </div>
 
     <p>PUE is dominated by cooling overhead, with power-conversion efficiency a distant second. Moving from air-cooled HGX to D2C-cooled NVL72 typically buys 0.10&ndash;0.15 of PUE. At hyperscale with a multi-MW deployment, that pays for the entire D2C plumbing capex within the first year.</p>
+
+    <div class="callout">
+        <div class="callout-label">Animated companion</div>
+        <p>Rack power and cooling modelled with every figure sourced: AI Racks Explained, <a href="https://ai-racks-explained.vercel.app/learn/06-power" style="color: var(--accent);">chapter 6, power</a> and <a href="https://ai-racks-explained.vercel.app/learn/07-cooling" style="color: var(--accent);">chapter 7, cooling</a>; facility overhead and electricity in the cost of a token: <a href="https://ai-racks-explained.vercel.app/learn/11-cost" style="color: var(--accent);">chapter 11, cost per token</a>.</p>
+    </div>
 </section>
 
 <section class="slide" id="slide-11">
@@ -1459,11 +1479,11 @@ const inletScale = (T) =&gt; T &lt;= <span class="num">18</span> ? <span class="
                           T &lt;= <span class="num">25</span> ? <span class="num">1.00</span> :
                                        <span class="num">0.78</span>;  <span class="cm">// 35 C: ~22% capability loss</span>
 
-<span class="cm">// Required airflow (CFM) at 15 C delta-T: 0.026 CFM per watt</span>
-const cfm = (W) =&gt; W * <span class="num">0.026</span>;
+<span class="cm">// Required airflow (CFM) at 15 C delta-T: ~0.115 CFM per watt</span>
+const cfm = (W) =&gt; W * <span class="num">0.115</span>;
 
-<span class="cm">// Required water flow (GPM) at 10 C delta-T: ~0.85 GPM per kW</span>
-const gpm = (W) =&gt; (W / <span class="num">1000</span>) * <span class="num">0.85</span>;
+<span class="cm">// Required water flow (US GPM) at 10 C delta-T: ~0.38 GPM per kW</span>
+const gpm = (W) =&gt; (W / <span class="num">1000</span>) * <span class="num">0.38</span>;
 
 <span class="cm">// Facility overhead: each cooling type carries a PUE-like factor</span>
 const pue = {
@@ -1498,8 +1518,8 @@ const pue = {
 
         const inletScale = (T) => T <= 18 ? 1.10 : T <= 25 ? 1.00 : 0.78;
 
-        const cfm = (W) => W * 0.026;
-        const gpm = (W) => (W / 1000) * 0.85;
+        const cfm = (W) => W * 0.115;
+        const gpm = (W) => (W / 1000) * 0.38;
 
         function fmt(n, unit, decimals) {
             const d = (decimals == null) ? 0 : decimals;
@@ -1577,6 +1597,7 @@ const pue = {
 <footer class="footer">
     <p>Part of the <a href="https://github.com/BrendanJamesLynskey/LLMs#nvidia-gpu-architectures">NVIDIA GPU Architectures Series</a></p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem;"><a href="https://github.com/BrendanJamesLynskey/LLMs#nvidia-gpu-architectures">Back to Series Index</a></p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Animated companion site: <a href="https://ai-racks-explained.vercel.app/">AI Racks Explained</a> &mdash; the machines underneath, chip to rack, each chapter around a model-driven animation with every figure sourced.</p>
 </footer>
 
 <script>
